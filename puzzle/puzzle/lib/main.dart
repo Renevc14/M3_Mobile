@@ -87,7 +87,7 @@ class _PuzzleHomeState extends State<PuzzleHome>
   void checkVictory() async {
     if (isVictory()) {
       if (!kIsWeb) {
-        await _audioPlayer.play(AssetSource('assets/success.mp3'));
+        await _audioPlayer.play(AssetSource('../assets/success.mp3'));
       }
       showDialog(
         context: context,
