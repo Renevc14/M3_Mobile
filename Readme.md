@@ -18,7 +18,7 @@ Este proyecto consiste en un **rompecabezas interactivo** tipo "sliding puzzle" 
 ## 🚀 Proyecto Final: App de Citas Médicas
 
 ### 🎯 Descripción
-Este proyecto consiste en un **App para Agendar Citas Médicas**, donde el usuario puede registrarse, loggearse y agendar una cita médica con el doctor de su preferencia, adjuntando una fotografía del sintoma (si fuera visual).
+Este proyecto consiste en un **App para Agendar Citas Médicas** desarrollado bajo el PATRON RIVERPOD, donde el usuario puede registrarse, loggearse y agendar una cita médica con el doctor de su preferencia, adjuntando una fotografía del sintoma (si fuera visual).
 
 LA APK ESTÁ EN LA CARPETA DEL PROYECTO FINAL.
 
