@@ -1,5 +1,3 @@
-// providers/auth_provider.dart
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/user_model.dart';
 import '../services/database_service.dart';
@@ -20,12 +18,14 @@ class AuthNotifier extends StateNotifier<User?> {
     return false;
   }
 
-  Future<bool> register(String username, String password) async {
+  Future<bool> register(String username, String password, {String? imagePath}) async {
     final exists = await DatabaseService().userExists(username);
     if (!exists) {
-      final id = await DatabaseService().createUser(User(username: username, password: password));
+      final id = await DatabaseService().createUser(
+        User(username: username, password: password, imagePath: imagePath),
+      );
       if (id > 0) {
-        state = User(id: id, username: username, password: password);
+        state = User(id: id, username: username, password: password, imagePath: imagePath);
         return true;
       }
     }

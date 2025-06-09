@@ -22,7 +22,8 @@ class DatabaseService {
           CREATE TABLE users(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT UNIQUE,
-            password TEXT
+            password TEXT,
+            imagePath TEXT
           )
         ''');
         await db.execute('''
@@ -39,8 +40,9 @@ class DatabaseService {
   }
 
   Future<int> createUser(User user) async {
-    return await _db!.insert('users', user.toMap());
-  }
+  final db = _db!;
+  return await db.insert('users', user.toMap());
+}
 
   Future<User?> getUser(String username, String password) async {
     final List<Map<String, dynamic>> maps = await _db!.query(
