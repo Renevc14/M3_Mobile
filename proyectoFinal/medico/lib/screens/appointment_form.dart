@@ -1,12 +1,9 @@
-// screens/appointment_form.dart
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
-
 
 import '../models/appointment_model.dart';
 import '../providers/auth_provider.dart';
@@ -24,6 +21,9 @@ class _AppointmentFormState extends ConsumerState<AppointmentForm> {
   final _reasonController = TextEditingController();
   DateTime? _selectedDate;
   File? _imageFile;
+  String? _selectedDoctor;
+
+  final List<String> _doctors = ['Carlos Pérez', 'Bruno Campero'];
 
   Future<void> _pickImage() async {
     final picker = ImagePicker();
@@ -63,6 +63,7 @@ class _AppointmentFormState extends ConsumerState<AppointmentForm> {
         userId: user.id!,
         date: _selectedDate!.toIso8601String(),
         reason: _reasonController.text.trim(),
+        doctor: _selectedDoctor!,
         imagePath: _imageFile?.path,
       );
 
@@ -82,6 +83,15 @@ class _AppointmentFormState extends ConsumerState<AppointmentForm> {
           key: _formKey,
           child: ListView(
             children: [
+              DropdownButtonFormField<String>(
+                decoration: const InputDecoration(labelText: 'Seleccionar Doctor'),
+                items: _doctors.map((doc) {
+                  return DropdownMenuItem(value: doc, child: Text(doc));
+                }).toList(),
+                onChanged: (value) => setState(() => _selectedDoctor = value),
+                validator: (value) => value == null ? 'Debe seleccionar un doctor' : null,
+              ),
+              const SizedBox(height: 10),
               TextFormField(
                 controller: _reasonController,
                 decoration: const InputDecoration(labelText: 'Motivo / Síntoma'),

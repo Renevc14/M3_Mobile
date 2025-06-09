@@ -3,6 +3,7 @@ class Appointment {
   final int userId;
   final String date;
   final String reason;
+  final String doctor;
   final String? imagePath;
 
   Appointment({
@@ -10,6 +11,7 @@ class Appointment {
     required this.userId,
     required this.date,
     required this.reason,
+    required this.doctor,
     this.imagePath,
   });
 
@@ -19,6 +21,7 @@ class Appointment {
       'userId': userId,
       'date': date,
       'reason': reason,
+      'doctor': doctor,
       'imagePath': imagePath,
     };
   }
@@ -29,6 +32,7 @@ class Appointment {
       userId: map['userId'],
       date: map['date'],
       reason: map['reason'],
+      doctor: map['doctor'],
       imagePath: map['imagePath'],
     );
   }
